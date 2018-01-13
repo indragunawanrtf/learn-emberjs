@@ -1,0 +1,31 @@
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <h3>Leave A Message For Us</h3>
+      <br/>
+      <br/>
+
+      <div class="form-group has-feedback {{if isValidEmail 'has-success'}}">
+        {{input class="form-control" value=emailAddress type="email" placeholder="Please type your Email address" autofocus="autofocus"}}
+        {{#if isValidEmail}}
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {{/if}}
+      </div>
+      <div class="form-group has-feedback {{if isLongEnough 'has-success'}}">
+        {{textarea class="form-control" value=messageEmail rows="7" placeholder="Your Message Minimum 5 Characters"}}
+        {{#if isLongEnough}}
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {{/if}}
+        <br/>
+      </div>
+      <button disabled={{isNotValid}} {{action 'sendMessage'}} class="btn btn-success btn-lg btn-block">Send Message</button>
+      <br/>
+      {{#if responseMessage}}
+      <div class="alert alert-success">{{responseMessage}}</div>
+      {{/if}}
+
+    </ul>
+  </div>
+</div>
+
+
