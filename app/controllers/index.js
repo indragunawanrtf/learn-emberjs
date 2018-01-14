@@ -5,7 +5,7 @@ export default Controller.extend({
 
   responseMessage: '',
   emailAddress: '',
-  headerMessage: '',
+  headerMessage: 'Coming Soon',
 
   isValid: match('emailAddress', /^.+@.+\..+$/),
   isDisabled: not('isValid'),
@@ -13,9 +13,12 @@ export default Controller.extend({
   actions: {
 
     saveInvitation() {
-      alert('Saving of the following email address is in progress');
+      const email = this.get('emailAddress');
+
+      const newInvitation = this.store.createRecord('invitation', { email: email });
+      newInvitation.save();
+
       this.set('responseMessage', 'Thank You! Weve just saved your email address');
-      this.set('headerMessage', 'Coming Soon Wait For Launch');
       this.set('emailAddress', '');
     }
   }
